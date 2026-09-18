@@ -69,30 +69,30 @@ A disparity alone does not reveal its cause or moral status. Intent is also not 
 
 ### 2.1 Demographic disparity
 
-Let \(A\) denote group membership and \(D\) a favorable decision. A simple way to describe a disparity is to compare selection probabilities:
+Let $A$ denote group membership and $D$ a favorable decision. A simple way to describe a disparity is to compare selection probabilities:
 
-\[
+$$
 P(D=1\mid A=a) \quad \text{and} \quad P(D=1\mid A=b).
-\]
+$$
 
 If these probabilities differ, the groups experience different decision rates. This equation detects a difference; it does not establish why the difference arose or whether it is unjust.
 
 ### 2.2 Statistical bias
 
-The word *bias* has a narrower technical meaning in statistics. For an estimator \(\hat{\theta}\) of a quantity \(\theta\), statistical bias is:
+The word *bias* has a narrower technical meaning in statistics. For an estimator $\hat{\theta}$ of a quantity $\theta$, statistical bias is:
 
-\[
+$$
 \operatorname{Bias}(\hat{\theta}) = \mathbb{E}[\hat{\theta}] - \theta.
-\]
+$$
 
 Term by term:
 
-- \(\hat{\theta}\) is the estimate produced from a sample.
-- \(\mathbb{E}[\hat{\theta}]\) is its average value over repeated samples.
-- \(\theta\) is the true quantity we want to estimate.
+- $\hat{\theta}$ is the estimate produced from a sample.
+- $\mathbb{E}[\hat{\theta}]$ is its average value over repeated samples.
+- $\theta$ is the true quantity we want to estimate.
 - A nonzero difference means the estimator is systematically too high or too low.
 
-**Worked example.** Suppose a delivery-time system predicts arrival 2.5 hours earlier than the true time on average. Its statistical bias is \(-2.5\) hours. That statement does not, by itself, say anything about demographic fairness.
+**Worked example.** Suppose a delivery-time system predicts arrival 2.5 hours earlier than the true time on average. Its statistical bias is $-2.5$ hours. That statement does not, by itself, say anything about demographic fairness.
 
 | Concept | What it asks | Requires social groups? | Is it automatically morally objectionable? |
 |---|---|---:|---:|
@@ -193,9 +193,9 @@ A **proxy** is a measured quantity used in place of something we cannot observe 
 
 The mapping is:
 
-\[
+$$
 \text{construct of interest} \longrightarrow \text{operational definition} \longrightarrow \text{recorded value}.
-\]
+$$
 
 Each arrow can introduce distortion.
 
@@ -209,17 +209,17 @@ Each arrow can introduce distortion.
 
 ### 5.2 Target variables deserve special scrutiny
 
-In supervised learning, the target variable \(Y\) is what the model is trained to predict. If the desired construct is \(Y^*\) but the dataset records a proxy \(Y\), then the model learns:
+In supervised learning, the target variable $Y$ is what the model is trained to predict. If the desired construct is $Y^*$ but the dataset records a proxy $Y$, then the model learns:
 
-\[
+$$
 \hat{Y} = f(X) \approx Y,
-\]
+$$
 
 not necessarily
 
-\[
+$$
 \hat{Y} \approx Y^*.
-\]
+$$
 
 **Worked example: arrests as a proxy for crime.** Suppose actual offending is the desired construct, but arrests are the available label. Arrests depend on offending, where police patrol, which behaviors are prioritized, whom officers stop, and whether conduct is detected. A model that accurately predicts arrests may primarily learn patterns of enforcement. Improving its arrest-prediction accuracy does not repair the construct mismatch.
 
@@ -259,31 +259,32 @@ Once data are collected, a learning algorithm finds patterns useful for predicti
 
 ### 6.1 Calibration can preserve disparity
 
-Informally, a calibrated score means that among cases assigned a probability \(p\), the event occurs about a fraction \(p\) of the time. If \(S\) is a risk score and \(Y\) an outcome, a group-conditional form is:
+Informally, a calibrated score means that among cases assigned a probability $p$, the event occurs about a fraction $p$ of the time. If $S$ is a risk score and $Y$ an outcome, a group-conditional form is:
 
-\[
+$$
 P(Y=1\mid S=p, A=a) = p.
-\]
+$$
 
 Term by term:
 
-- \(Y=1\) is the event of interest.
-- \(S=p\) selects people receiving score \(p\).
-- \(A=a\) selects a social group.
+- $Y=1$ is the event of interest.
+- $S=p$ selects people receiving score $p$.
+- $A=a$ selects a social group.
 - Equality says the score matches the observed event frequency for that group.
 
-Calibration is useful, but it does not tell us whether \(Y\) is a valid target, whether group base rates arose justly, or whether acting on the score is legitimate. Faithfully reflecting observed data can faithfully reflect observed disparity.
+Calibration is useful, but it does not tell us whether $Y$ is a valid target, whether group base rates arose justly, or whether acting on the score is legitimate. Faithfully reflecting observed data can faithfully reflect observed disparity.
 
 ### 6.2 Removing a protected attribute is not enough
 
-Suppose gender \(A\) is removed from a résumé dataset, leaving features \(X\). If some feature—such as age at which a person began programming—is correlated with gender, then \(X\) still carries information about \(A\).
+Suppose gender $A$ is removed from a résumé dataset, leaving features $X$. If some feature—such as age at which a person began programming—is correlated with gender, then $X$ still carries information about $A$.
 
 The issue can be expressed as:
 
-\[
+$$
 P(A\mid X) \neq P(A).
+$$
 
-Knowing \(X\) changes what can be inferred about group membership. Such a feature acts as a **proxy** or **redundant encoding**.
+Knowing $X$ changes what can be inferred about group membership. Such a feature acts as a **proxy** or **redundant encoding**.
 
 The difficult part is that a proxy may also be relevant. Programming experience may help predict job performance and also reflect unequal access to early computing opportunities. Dropping every correlated feature can destroy useful information without addressing the underlying cause.
 
@@ -295,7 +296,7 @@ If a group has fewer training examples, a model has less information with which 
 
 - Group A: 900 cases, 4% error → 36 errors.
 - Group B: 100 cases, 20% error → 20 errors.
-- Overall error: \((36+20)/1000 = 5.6\%\).
+- Overall error: $(36+20)/1000 = 5.6\%$.
 
 Reporting only 5.6% makes the system look broadly reliable. Reporting by group reveals that Group B's error rate is five times Group A's.
 
@@ -324,9 +325,9 @@ The chapter's medical example concerns a model that associated asthma with lower
 
 Represent the relationship as:
 
-\[
+$$
 \text{Asthma} \rightarrow \text{More intensive care} \rightarrow \text{Lower observed complications}.
-\]
+$$
 
 A prediction model can learn that asthma is associated with a better recorded outcome. But a decision rule “admit lower-risk patients and discharge higher-risk patients” could remove the care that created the apparently protective association.
 
@@ -335,7 +336,7 @@ The essential distinction is:
 | Predictive question | Causal question |
 |---|---|
 | Among historically observed patients, who had complications? | What would happen if we changed this patient's treatment? |
-| Estimates \(P(Y\mid X)\) | Seeks the effect of an intervention on \(Y\) |
+| Estimates $P(Y\mid X)$ | Seeks the effect of an intervention on $Y$ |
 | Can exploit any stable association | Must account for why the association exists |
 
 ### 7.2 Base rates, calibration, and error disparities
@@ -369,9 +370,9 @@ A search engine places one result first. Users click it partly because it is fir
 
 The observation is confounded:
 
-\[
+$$
 \text{click} = f(\text{relevance}, \text{position}, \text{presentation}, \text{user context}, \ldots).
-\]
+$$
 
 Treating the click as a pure measure of relevance overstates what it tells us.
 
@@ -388,19 +389,19 @@ In predictive policing:
 
 A compact pedagogical recurrence is:
 
-\[
+$$
 D_{t+1} = g(W_t, A_t), \qquad A_t = h(M_t), \qquad M_t = \operatorname{Learn}(D_t),
-\]
+$$
 
 where:
 
-- \(D_t\) is recorded data at time \(t\),
-- \(M_t\) is the fitted model,
-- \(A_t\) is the action chosen from the model,
-- \(W_t\) is the underlying world,
+- $D_t$ is recorded data at time $t$,
+- $M_t$ is the fitted model,
+- $A_t$ is the action chosen from the model,
+- $W_t$ is the underlying world,
 - and the next dataset depends on both the world and the action.
 
-The critical point is that \(D_{t+1}\) is not an independent sample from an untouched world.
+The critical point is that $D_{t+1}$ is not an independent sample from an untouched world.
 
 ### 8.3 Quantitative example from the chapter
 
@@ -435,41 +436,41 @@ The chapter's toy example makes the earlier issues concrete (pp. 15-18).
 
 Each applicant has two observed features:
 
-- \(x_1\): college GPA,
-- \(x_2\): interview score.
+- $x_1$: college GPA,
+- $x_2$: interview score.
 
-Historical employees also have a performance rating \(Y\). A simple linear model predicts performance:
+Historical employees also have a performance rating $Y$. A simple linear model predicts performance:
 
-\[
+$$
 \hat{Y} = \beta_0 + \beta_1 x_1 + \beta_2 x_2.
-\]
+$$
 
 Term by term:
 
-- \(\beta_0\) is the baseline prediction.
-- \(\beta_1\) is how much predicted performance changes with GPA, holding interview score fixed.
-- \(\beta_2\) is how much it changes with interview score, holding GPA fixed.
-- \(\hat{Y}\) is the predicted performance rating.
+- $\beta_0$ is the baseline prediction.
+- $\beta_1$ is how much predicted performance changes with GPA, holding interview score fixed.
+- $\beta_2$ is how much it changes with interview score, holding GPA fixed.
+- $\hat{Y}$ is the predicted performance rating.
 
-The employer selects applicants above a cutoff \(c\):
+The employer selects applicants above a cutoff $c$:
 
-\[
+$$
 D = \mathbf{1}[\hat{Y} \ge c].
-\]
+$$
 
-Here \(\mathbf{1}[\cdot]\) equals 1 when the condition is true and 0 otherwise. Geometrically, the cutoff creates a line in the GPA/interview plane. Applicants on one side are selected.
+Here $\mathbf{1}[\cdot]$ equals 1 when the condition is true and 0 otherwise. Geometrically, the cutoff creates a line in the GPA/interview plane. Applicants on one side are selected.
 
 ### 9.2 Why blindness does not ensure parity
 
-The model does not use demographic group \(A\) directly. Nevertheless, the source figure shows one group being selected more often.
+The model does not use demographic group $A$ directly. Nevertheless, the source figure shows one group being selected more often.
 
 The path can be:
 
-\[
+$$
 A \longrightarrow \text{unequal education or workplace conditions} \longrightarrow (X,Y) \longrightarrow \hat{Y} \longrightarrow D.
-\]
+$$
 
-Alternatively, manager prejudice may directly affect the historical performance label \(Y\). Several causal stories fit the same observed pattern. The data alone do not identify which story is correct.
+Alternatively, manager prejudice may directly affect the historical performance label $Y$. Several causal stories fit the same observed pattern. The data alone do not identify which story is correct.
 
 ### 9.3 Candidate interventions
 
@@ -484,17 +485,17 @@ Alternatively, manager prejudice may directly affect the historical performance 
 
 ### 9.4 Selection-rate comparison and the 80% guideline
 
-If two groups have selection rates \(s_a\) and \(s_b\), a common comparison is:
+If two groups have selection rates $s_a$ and $s_b$, a common comparison is:
 
-\[
+$$
 r = \frac{\min(s_a,s_b)}{\max(s_a,s_b)}.
-\]
+$$
 
 **Worked example.** If Group A has a 50% selection rate and Group B has a 35% rate, then:
 
-\[
+$$
 r = \frac{0.35}{0.50} = 0.70.
-\]
+$$
 
 The lower rate is 70% of the higher rate, a 30% relative shortfall. The chapter notes that U.S. Equal Employment Opportunity Commission guidance has used a difference exceeding 20%—equivalently, a ratio below 0.8—as a possible trigger for disparate-impact scrutiny (p. 16). It is not an automatic finding of illegality; justification and avoidability still matter.
 
@@ -502,22 +503,22 @@ The lower rate is 70% of the higher rate, a 30% relative shortfall. The chapter 
 
 The chapter suggests a cohort-level objective based on pairwise distance. A pedagogical form is:
 
-\[
+$$
 \max_{S:|S|=k}
 \left[
 \sum_{i\in S}\hat{Y}_i
 +
 \lambda\frac{2}{k(k-1)}\sum_{i<j,\,i,j\in S} d(x_i,x_j)
 \right].
-\]
+$$
 
 Term by term:
 
-- \(S\) is the selected cohort of size \(k\).
-- \(\hat{Y}_i\) is candidate \(i\)'s predicted performance.
-- \(d(x_i,x_j)\) measures how different candidates \(i\) and \(j\) are.
+- $S$ is the selected cohort of size $k$.
+- $\hat{Y}_i$ is candidate $i$'s predicted performance.
+- $d(x_i,x_j)$ measures how different candidates $i$ and $j$ are.
 - The double sum measures average pairwise diversity.
-- \(\lambda\) controls the tradeoff between individual predicted performance and cohort diversity.
+- $\lambda$ controls the tradeoff between individual predicted performance and cohort diversity.
 
 **Mental picture.** Selecting the top individual scores can produce a team of 11 excellent goalkeepers. A cohort objective recognizes that a team's value can depend on the combination of its members.
 
@@ -526,7 +527,7 @@ The formula does not solve the normative problem. Which features should define d
 ### Check your understanding
 
 1. Draw two causal stories that could explain lower historical performance ratings for one group. Would the same intervention fit both stories?
-2. In the diversity objective, what happens as \(\lambda\) moves from 0 to a very large value?
+2. In the diversity objective, what happens as $\lambda$ moves from 0 to a very large value?
 3. Why is equalizing selection rates a policy choice rather than a conclusion forced by the data?
 
 ---
@@ -672,7 +673,7 @@ The introduction's deepest contribution is a change in the unit of analysis. Fai
 
 The full causal picture is:
 
-\[
+$$
 \text{history and institutions}
 \rightarrow
 \text{measurement}
@@ -686,7 +687,7 @@ The full causal picture is:
 \text{people and institutions}
 \rightarrow
 \text{future measurement}.
-\]
+$$
 
 At each arrow, someone chooses what to record, predict, optimize, or do. Technical tools can reveal tradeoffs, test consequences, and sometimes mitigate harm. They cannot decide by themselves which disparities are justified, what counts as harm, whether an institution is legitimate, or what justice requires.
 

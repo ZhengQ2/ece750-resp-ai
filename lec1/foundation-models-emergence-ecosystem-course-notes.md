@@ -125,10 +125,10 @@ Transfer learning means using knowledge learned in one setting to help in anothe
 
 A compact teaching formalization is:
 
-\[
+$$
 \text{broad data} \xrightarrow{\text{pretraining}} \text{foundation model}
 \xrightarrow{\text{adaptation for task }t} \text{task-specific model or system}.
-\]
+$$
 
 This is a conceptual pipeline, not an equation proposed by the report. Its key point is that the expensive, general stage can be shared while the final stage varies by application.
 
